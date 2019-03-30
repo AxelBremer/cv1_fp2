@@ -20,7 +20,7 @@ opts.train = struct() ;
 opts = vl_argparse(opts, varargin) ;
 if ~isfield(opts.train, 'gpus'), opts.train.gpus = []; end;
 
-opts.train.gpus = [0];
+opts.train.gpus = [];
 
 
 
@@ -44,7 +44,6 @@ net.meta.classes.name = imdb.meta.classes(:)' ;
 % -------------------------------------------------------------------------
 %                                                                     Train
 % -------------------------------------------------------------------------
-
 trainfn = @cnn_train ;
 [net, info] = trainfn(net, imdb, getBatch(opts), ...
   'expDir', opts.expDir, ...
@@ -102,9 +101,10 @@ te_y(te_y == 9) = 3;
 
 %keyboard
 data = zeros([32,32,3,6500]);
-sets = ones([6500,1]);
+sets = ones([1,6500]);
 sets(2501:6500) = 2;
 labels = cat(1, tr_y, te_y);
+labels = permute(labels, [2 1]);
 %% TODO: Implement your loop here, to create the data structure described in the assignment
 %% Use train.mat and test.mat we provided from STL-10 to fill in necessary data members for training below
 %% You will need to, in a loop function,  1) read the image, 2) resize the image to (32,32,3), 3) read the label of that image
@@ -123,11 +123,12 @@ for i = 1:size(te_y,1)
     data(:,:,:,j) = im;
 end
 %%
+
 % subtract mean
 dataMean = mean(data(:, :, :, sets == 1), 4);
 data = bsxfun(@minus, data, dataMean);
 
-imdb.images.data = data ;
+imdb.images.data = single(data) ;
 imdb.images.labels = single(labels) ;
 imdb.images.set = sets;
 imdb.meta.sets = {'train', 'val'} ;
