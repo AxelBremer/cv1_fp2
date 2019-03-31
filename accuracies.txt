@@ -1,0 +1,6 @@
+Network: 100-120.mat, CNN: fine_tuned_accuracy: 0.81, SVM: pre_trained_accuracy: 69.25, fine_tuned_accuracy: 81.97
+Network: 100-40.mat, CNN: fine_tuned_accuracy: 0.76, SVM: pre_trained_accuracy: 69.25, fine_tuned_accuracy: 75.75
+Network: 100-80.mat, CNN: fine_tuned_accuracy: 0.77, SVM: pre_trained_accuracy: 69.25, fine_tuned_accuracy: 76.85
+Network: 50-120.mat, CNN: fine_tuned_accuracy: 0.82, SVM: pre_trained_accuracy: 69.25, fine_tuned_accuracy: 82.45
+Network: 50-40.mat, CNN: fine_tuned_accuracy: 0.80, SVM: pre_trained_accuracy: 69.25, fine_tuned_accuracy: 80.08
+Network: 50-80.mat, CNN: fine_tuned_accuracy: 0.77, SVM: pre_trained_accuracy: 69.25, fine_tuned_accuracy: 77.70

@@ -4,10 +4,10 @@ MATLABDIR ?= /usr/local/matlab
 CXX ?= g++
 #CXX = g++-3.3
 CC ?= gcc
-CFLAGS = -Wall -Wconversion -O3 -fPIC -I$(MATLABDIR)/extern/include -I..
+COMPFLAGS = -Wall -Wconversion -O3 -fPIC -I$(MATLABDIR)/extern/include -I..
 
 MEX = $(MATLABDIR)/bin/mex
-MEX_OPTION = CC="$(CXX)" CXX="$(CXX)" CFLAGS="$(CFLAGS)" CXXFLAGS="$(CFLAGS)"
+MEX_OPTION = CC="$(CXX)" CXX="$(CXX)" COMPFLAGS="$(COMPFLAGS)" CXXFLAGS="$(COMPFLAGS)"
 # comment the following line if you use MATLAB on a 32-bit computer
 MEX_OPTION += -largeArrayDims
 MEX_EXT = $(shell $(MATLABDIR)/bin/mexext)
@@ -33,7 +33,7 @@ libsvmwrite.$(MEX_EXT):	libsvmwrite.c
 	$(MEX) $(MEX_OPTION) libsvmwrite.c
 
 linear_model_matlab.o: linear_model_matlab.c ../linear.h
-	$(CXX) $(CFLAGS) -c linear_model_matlab.c
+	$(CXX) $(COMPFLAGS) -c linear_model_matlab.c
 
 ../linear.o: ../linear.cpp ../linear.h
 	make -C .. linear.o
@@ -42,7 +42,7 @@ linear_model_matlab.o: linear_model_matlab.c ../linear.h
 	make -C .. tron.o
 
 ../blas/blas.a: ../blas/*.c ../blas/*.h
-	make -C ../blas OPTFLAGS='$(CFLAGS)' CC='$(CC)';
+	make -C ../blas OPTFLAGS='$(COMPFLAGS)' CC='$(CC)';
 
 clean:
 	make -C ../blas clean
