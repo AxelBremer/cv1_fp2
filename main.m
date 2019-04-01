@@ -11,15 +11,23 @@ nets.pre_trained = load(fullfile('data', 'pre_trained_model.mat')); nets.pre_tra
 data = load(fullfile(expdir, 'imdb-stl.mat'));
 
 %% Get accuracies
-for q = 1:length(all_nets) 
-    nets.fine_tuned = load(fullfile('data','fine_tuned_networks',all_nets(q).name)); nets.fine_tuned = nets.fine_tuned.net;
-    train_svm(nets, data, all_nets(q).name);
-end
-
-play_sound();
+% for q = 1:length(all_nets) 
+%     nets.fine_tuned = load(fullfile('data','fine_tuned_networks',all_nets(q).name)); nets.fine_tuned = nets.fine_tuned.net;
+%     train_svm(nets, data, all_nets(q).name);
+% end
+% 
+% play_sound();
 
 %% visualize
-d = load('stl10_matlab/train.mat');
-classes = [1, 2, 3, 7, 9];
-tr_X = d.X(ismember(d.y, classes),:);
-tsne(tr_X, data.images.labels)
+net = load(fullfile('data','fine_tuned_networks','50-120.mat')); net = net.net;
+% net.layers = net.layers(:, 1:end-1);
+forward = vl_simplenn(net, data.images.data);
+ft_tsne = tsne(squeeze(forward(12).x(:,:,:,2501:6500))', double(data.images.labels(2501:6500))', 2, 64, 50);
+
+%%
+
+net = load(fullfile('data','pre_trained_model.mat')); net = net.net;
+net.layers = net.layers(:, 1:end-1);
+forward = vl_simplenn(nets.pre_trained, data.images.data);
+pt_tsne = tsne(squeeze(forward(12).x(:,:,:,2501:6500))', double(data.images.labels(2501:6500))', 2, 64, 50);
+
