@@ -20,14 +20,18 @@ data = load(fullfile(expdir, 'imdb-stl.mat'));
 
 %% visualize
 net = load(fullfile('data','fine_tuned_networks','50-120.mat')); net = net.net;
-% net.layers = net.layers(:, 1:end-1);
+net.layers = net.layers(:, 1:end-1);
 forward = vl_simplenn(net, data.images.data);
 ft_tsne = tsne(squeeze(forward(12).x(:,:,:,2501:6500))', double(data.images.labels(2501:6500))', 2, 64, 50);
+keyboard
 
 %%
 
 net = load(fullfile('data','pre_trained_model.mat')); net = net.net;
 net.layers = net.layers(:, 1:end-1);
-forward = vl_simplenn(nets.pre_trained, data.images.data);
+forward = vl_simplenn(net, data.images.data);
 pt_tsne = tsne(squeeze(forward(12).x(:,:,:,2501:6500))', double(data.images.labels(2501:6500))', 2, 64, 50);
 
+%%
+plot_data(ft_tsne, data.images.labels(2501:6500)', 'Fine-tuned network');
+plot_data(pt_tsne, data.images.labels(2501:6500)', 'Pre-trained network');
