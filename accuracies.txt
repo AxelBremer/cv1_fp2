@@ -4,4 +4,9 @@ Network: 100-80.mat, CNN: fine_tuned_accuracy: 0.77, SVM: pre_trained_accuracy: 
 Network: 50-120.mat, CNN: fine_tuned_accuracy: 0.82, SVM: pre_trained_accuracy: 69.25, fine_tuned_accuracy: 82.45
 Network: 50-40.mat, CNN: fine_tuned_accuracy: 0.80, SVM: pre_trained_accuracy: 69.25, fine_tuned_accuracy: 80.08
 Network: 50-80.mat, CNN: fine_tuned_accuracy: 0.77, SVM: pre_trained_accuracy: 69.25, fine_tuned_accuracy: 77.70
-Network: 100-120.mat, CNN: fine_tuned_accuracy: 0.81, SVM: pre_trained_accuracy: 69.25, fine_tuned_accuracy: 81.97
+Network: frozen_layers-40, CNN: fine_tuned_accuracy: 0.58, SVM: pre_trained_accuracy: 68.88, fine_tuned_accuracy: 68.88
+Network: frozen_layers-80, CNN: fine_tuned_accuracy: 0.60, SVM: pre_trained_accuracy: 68.88, fine_tuned_accuracy: 68.88
+Network: frozen_layers-80, CNN: fine_tuned_accuracy: 0.60, SVM: pre_trained_accuracy: 68.88, fine_tuned_accuracy: 68.88
+Network: frozen_layers-120, CNN: fine_tuned_accuracy: 0.61, SVM: pre_trained_accuracy: 68.88, fine_tuned_accuracy: 68.88
+Network: frozen_layers-120, CNN: fine_tuned_accuracy: 0.61, SVM: pre_trained_accuracy: 68.88, fine_tuned_accuracy: 68.88
+Network: frozen_layers-120, CNN: fine_tuned_accuracy: 0.60, SVM: pre_trained_accuracy: 68.88, fine_tuned_accuracy: 68.88

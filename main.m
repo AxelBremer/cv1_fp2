@@ -18,6 +18,9 @@ data = load(fullfile(expdir, 'imdb-stl.mat'));
 % 
 % play_sound();
 
+nets.fine_tuned = load(fullfile('data','cnn_assignment-lenet','net-epoch-120.mat')); nets.fine_tuned = nets.fine_tuned.net;
+train_svm(nets, data, 'frozen_layers-120');
+
 %% visualize
 net = load(fullfile('data','fine_tuned_networks','50-120.mat')); net = net.net;
 net.layers = net.layers(:, 1:end-1);
